@@ -16,7 +16,7 @@ class CreateVideosTable extends Migration
             $table->increments('id');
 	        $table->string('title');
 	        $table->string('original_file');
-	        $table->json('formats');
+	        $table->text('formats');
 	        $table->boolean('to_encode');
 	        $table->integer('uploader_id')->unsigned();
             $table->timestamps();
