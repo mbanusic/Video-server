@@ -7,6 +7,9 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.3.0"
+    "blueimp-file-upload": "^9.12.1",
+    "bootstrap": "^4.0.0-alpha.2",
+    "jquery": "^2.2.3",
+    "jquery-ui": "^1.10.5"
   }
 }
