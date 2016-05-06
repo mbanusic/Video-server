@@ -17,6 +17,4 @@ We will use [jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload) 
  
 # Installation
 
- - Compile openresty with modules 
- - Install php, mysql
- - load Laravel
+    - install openresty

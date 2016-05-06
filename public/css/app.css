@@ -4598,4 +4598,11 @@ a.bg-danger:focus, a.bg-danger:hover {
   .hidden-print {
     display: none !important; } }
 
+.row {
+  margin-bottom: 1rem; }
+
+footer {
+  background-color: #f7f7f7;
+  margin-top: 4rem; }
+
 /*# sourceMappingURL=app.css.map */

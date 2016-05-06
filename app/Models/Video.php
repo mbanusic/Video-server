@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id,
  * @property string $title
  * @property string $original_file
+ * @property string $thumbnail
  * @property array $formats
  * @property int $uploader_id
  * @property boolean $to_encode

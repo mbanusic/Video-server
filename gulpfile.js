@@ -21,8 +21,10 @@ elixir(function(mix) {
         './node_modules/blueimp-file-upload/js/jquery.fileupload-process.js',
         './node_modules/blueimp-file-upload/js/jquery.fileupload-video.js',
         './node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js'
-    ], 'public/js/upload.js');
+    ], 'js/upload.js');
 
-    mix.copy('node_modules/bootstrap/dist/js/bootstrap.js', 'public/js/bootstrap.js');
-    mix.copy('node_modules/jquery/dist/jquery.js', 'public/js/jquery.js');
+    mix.copy('node_modules/bootstrap/dist/js/bootstrap.js', 'js/bootstrap.js');
+    mix.copy('node_modules/jquery/dist/jquery.js', 'js/jquery.js');
+
+    mix.version(['css/app.css', 'js/upload.js', 'js/bootstrap.js', 'js/jquery.js'])
 });

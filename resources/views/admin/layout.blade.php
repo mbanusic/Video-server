@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ elixir('app.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     @section('head')
         <title>Admin</title>
     @endsection
@@ -17,25 +17,33 @@
 
     <a class="navbar-brand" href="#">TG</a>
     <ul class="nav navbar-nav">
-        <li class="nav-item {{ Request::is('admin_home')?'active':'' }}">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item {{ url()->current()==route('admin_home')?'active':'' }}">
+            <a class="nav-link" href="{{ route('admin_home') }}">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item {{ Request::is('video_index')?'active':'' }}">
-            <a class="nav-link" href="#">Videos</a>
+        <li class="nav-item {{ url()->current()==route('video_index')?'active':'' }}">
+            <a class="nav-link" href="{{ route('video_index') }}">Videos</a>
         </li>
-        <li class="nav-item {{ Request::is('video_upload')?'active':'' }}">
-            <a class="nav-link" href="#">Upload</a>
+        <li class="nav-item {{ url()->current()==route('video_upload')?'active':'' }}">
+            <a class="nav-link" href="{{ route('video_upload') }}">Upload</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+        <li class="nav-item {{ url()->current()==route('help')?'active':'' }}">
+            <a class="nav-link" href="{{ route('help') }}">Help</a>
         </li>
     </ul>
 </nav>
-@yield('content')
+<div class="container-fluid">
+    @yield('content')
+</div>
+
+<footer class="text-muted">
+    <div class="container">
+        <p>Built by @mbanusic at TG</p>
+    </div>
+</footer>
 
 @section('scripts')
-    <script src="{{ elixir('jquery.js') }}"></script>
-    <script src="{{ elixir('bootstrap.js') }}"></script>
+    <script src="{{ elixir('js/jquery.js') }}"></script>
+    <script src="{{ elixir('js/bootstrap.js') }}"></script>
 @endsection
 </body>
 </html>
