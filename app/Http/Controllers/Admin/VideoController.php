@@ -38,9 +38,9 @@ class VideoController extends Controller {
 
 	}
 
-	public function jw() {
+	public function jw($offset = 0) {
 		$botr_api = new BotrAPI('mhJb8EHW', 'Qavj2DbQ8kIY0bSmcD1lDnme');
-		$videos = $botr_api->call("/videos/list", array('result_offset' => 0, 'result_limit' => 10));
+		$videos = $botr_api->call("/videos/list", array('result_offset' => $offset, 'result_limit' => 10));
 		$out = [];
 		foreach ($videos['videos'] as $video) {
 			$key = $video['key'];
