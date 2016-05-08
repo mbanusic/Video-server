@@ -24,5 +24,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::get('/edit/{id}', ['as' => 'video_edit', 'uses' => 'VideoController@getEditVideo']);
 		Route::post('/upload', ['uses' => 'VideoController@postUploadVideo']);
 		Route::post('edit/{id}', ['uses' => 'VideoController@postEditVideo']);
+		Route::get('jw', ['uses' => 'VideoController@jw']);
 	});
 });
