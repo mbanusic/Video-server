@@ -39,6 +39,9 @@ class VideoController extends Controller {
 	}
 
 	public function jw($offset = 0) {
+		if (!$offset) {
+			$offset = ArchiveVideo::all(['id'])->count();
+		}
 		$botr_api = new BotrAPI('mhJb8EHW', 'Qavj2DbQ8kIY0bSmcD1lDnme');
 		$videos = $botr_api->call("/videos/list", array('result_offset' => $offset, 'result_limit' => 10));
 		$out = [];
