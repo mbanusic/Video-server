@@ -33,24 +33,28 @@ class JW extends Command
 	    $client = new Client();
 	    foreach ($videos as $video) {
 		    $top = last($video->sizes['conversions']);
-		    $path1 = 'http://video.telegram.hr'.$top['link']['path'];
-		    $head = $video->sizes['conversions'][1];
-		    $path2 = 'http://video.telegram.hr'.$head['link']['path'];
-		    $client->request('GET', $path1, ['sink' => '/var/www/originals/jw'.$top['link']['path']]);
-		    $client->request('GET', $path2, ['sink' => '/var/www/originals/jw'.$head['link']['path']]);
-		    $video->downloaded = true;
-		    $video->downloaded_sizes = array(
-			    $top['template']['key'] => array(
+		    $sizes = [];
+		    if (isset($top['link']['path'])) {
+			    $path1 = 'http://video.telegram.hr' . $top['link']['path'];
+			    $client->request( 'GET', $path1, [ 'sink' => '/var/www/originals/jw' . $top['link']['path'] ] );
+			    $sizes[$top['template']['key']] = array(
 				    'name' => $top['template']['format']['name'],
 				    'link' => $path1,
 				    'local' => '/var/www/originals/jw'.$top['link']['path']
-			    ),
-			    $head['template']['key'] => array(
+			    );
+		    }
+		    $head = $video->sizes['conversions'][1];
+		    if (isset($head['link']['path'])) {
+			    $path2 = 'http://video.telegram.hr' . $head['link']['path'];
+			    $client->request( 'GET', $path2, [ 'sink' => '/var/www/originals/jw' . $head['link']['path'] ] );
+			    $sizes[$head['template']['key']] = array(
 				    'name' => $head['template']['format']['name'],
 				    'link' => $path2,
 				    'local' => '/var/www/originals/jw'.$head['link']['path']
-			    )
-		    );
+			    );
+		    }
+		    $video->downloaded = true;
+		    $video->downloaded_sizes = $sizes;
 		    $video->save();
 	    }
 	    $this->info('Completed');
