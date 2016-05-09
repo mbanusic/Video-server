@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $jw_key
  * @property string $title
  * @property array $sizes
+ * @property boolean $downloaded
+ * @property array $downloaded_sizes
  */
 class ArchiveVideo extends Model{
 	protected $table = 'archive';
@@ -20,7 +22,9 @@ class ArchiveVideo extends Model{
 		'id' => 'int',
 		'jw_key' => 'string',
 		'title' => 'string',
-		'sizes' => 'array'
+		'sizes' => 'array',
+		'downloaded' => 'boolean',
+		'downloaded_sizes' => 'array'
 	];
 
 	public $timestamps = false;
