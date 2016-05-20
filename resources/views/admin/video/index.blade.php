@@ -22,10 +22,11 @@
                         <td>
                             <div class="media">
                                 <a href="{{ route('video_edit', ['id' => $video['id']]) }}" class="media-left">
-                                    <img class="media-object" src="{{ $video['thumbnail'] }}">
+                                    <img class="media-object" src="/thumbnails/{{ $video['unique_id'] }}.jpg" width="120">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ $video['title'] }}</h4>
+                                    <h4 class="media-heading"><a href="{{ route('video_edit', ['id' => $video['id']]) }}">{{ $video['title'] }}</a></h4>
+                                    Embed link: http://video.adriaticmedia.hr/videos/{{ $video['unique_id'] }}
                                 </div>
                             </div>
                         </td>
@@ -35,9 +36,4 @@
             </table>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ elixir('js/upload.js') }}" type="application/javascript"></script>
 @endsection

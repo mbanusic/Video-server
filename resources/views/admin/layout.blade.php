@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     @section('head')
         <title>Admin</title>
-    @endsection
+    @show
 </head>
 <body>
 <nav class="navbar navbar-light bg-faded">
@@ -44,6 +44,6 @@
 @section('scripts')
     <script src="{{ elixir('js/jquery.js') }}"></script>
     <script src="{{ elixir('js/bootstrap.js') }}"></script>
-@endsection
+@show
 </body>
 </html>

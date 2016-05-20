@@ -1,6 +1,8 @@
 {
   "css/app.css": "css/app-a1a0513dc7.css",
-  "js/bootstrap.js": "js/bootstrap-cf2dca74ac.js",
+  "css/videojs.css": "css/videojs-8d7f3d44b4.css",
+  "js/bootstrap.js": "js/bootstrap-76801c43e1.js",
   "js/jquery.js": "js/jquery-aacc43d6f3.js",
-  "js/upload.js": "js/upload-71e24218af.js"
+  "js/upload.js": "js/upload-107c490390.js",
+  "js/videojs.js": "js/videojs-57f4efe4d5.js"
 }
