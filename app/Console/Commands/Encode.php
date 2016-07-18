@@ -34,8 +34,11 @@ class Encode extends Command
 		    if (isset($video->formats['net_mp4']) && $video->formats['net_mp4']['name'] == 'net_mp4') {
 			    $video->transcodeNet();
 		    }
-		    if (isset($video->formats['bg_mp4']) && $video->formats['net_mp4']['name'] == 'bg_mp4') {
+		    if (isset($video->formats['bg_mp4']) && $video->formats['bg_mp4']['name'] == 'bg_mp4') {
 			    $video->transcodeBackground();
+		    }
+		    if (isset($video->formats['mad_mp4']) && $video->formats['mad_mp4']['name'] == 'mad_mp4') {
+			    $video->transcodeMobileAd();
 		    }
 	    }
     }

@@ -115,14 +115,17 @@ class Video extends Model{
 		$video->filters()
 		      ->resize( new Dimension( 1024, 768 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
 		$format = new X264Extended('libfdk_aac');
-		$format->setKiloBitrate( 300 )
+		$format->setKiloBitrate( 500 )
 		       ->setAudioChannels( 1 )
 		       ->setAudioKiloBitrate( 128 );
 		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-bg.mp4' );
-		$this->formats['bg_mp4'] = array(
+		$formats = $this->formats;
+		$formats['bg_mp4'] = array(
 			'name' => 'BG-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-bg.mp4',
-			'url' => 'http://videos.adriaticmedia.hr/videos/'.$this->unique_id.'-bg.mp4');
+			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-bg.mp4');
+		$this->formats = $formats;
+		$this->to_encode = false;
 		$this->save();
 	}
 
@@ -131,7 +134,8 @@ class Video extends Model{
 		$ffmpeg = FFMpeg::create([
 			'ffmpeg.binaries'  => '/home/marko/bin/ffmpeg',
 			'ffprobe.binaries' => '/home/marko/bin/ffprobe',
-			'ffmpeg.threads'   => 5,
+			'ffmpeg.threads'   => 6,
+			'timeout'          => 3600,
 		]);
 		$video = $ffmpeg->open( $this->original_file );
 		$video->filters()
@@ -141,21 +145,53 @@ class Video extends Model{
 			->setAudioChannels( 1 )
 			->setAudioKiloBitrate( 128 );
 		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-net.mp4' );
-		$this->formats['net_mp4'] = array(
+		$formats = $this->formats;
+		$formats['net_mp4'] = array(
 			'name' => 'Net-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-net.mp4',
-			'url' => 'http://videos.adriaticmedia.hr/videos/'.$this->unique_id.'-net.mp4',
+			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-net.mp4',
 		);
 
-		$format = new WebM();
+		/*$format = new WebM();
 		$format->setAudioChannels( 1 )->setAudioKiloBitrate( 128 )->setKiloBitrate( 700 );
 		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-net.webm'  );
-		$this->formats['net_webm'] = array(
+		$formats['net_webm'] = array(
 			'name' => 'Net-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-net.webm',
-			'url' => 'http://videos.adriaticmedia.hr/videos/'.$this->unique_id.'-net.webm',
+			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-net.webm',
 		);
+		$this->formats = $formats;*/
 		$this->to_encode = false;
 		$this->save();
 	}
+
+	public function transcodeMobileAd() {
+		$ffmpeg = FFMpeg::create([
+			'ffmpeg.binaries'  => '/home/marko/bin/ffmpeg',
+			'ffprobe.binaries' => '/home/marko/bin/ffprobe',
+			'ffmpeg.threads'   => 5,
+		]);
+		$video = $ffmpeg->open( $this->original_file );
+		$video->filters()
+		      ->resize( new Dimension( 300, 250 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
+		$format = new X264Extended('libfdk_aac');
+		$format->setKiloBitrate( 300 )
+		       ->setAudioChannels( 1 )
+		       ->setAudioKiloBitrate( 128 );
+		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-mad.mp4' );
+		$formats = $this->formats;
+		$formats['mad_mp4'] = array(
+			'name' => 'MAD-mp4',
+			'path' => '/var/www/transcoded/' . $this->unique_id . '-mad.mp4',
+			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-mad.mp4');
+		$this->formats = $formats;
+		$this->to_encode = false;
+		$this->save();
+	}
+
+	public function downloadYoutube() {
+
+	}
+
+	
 }

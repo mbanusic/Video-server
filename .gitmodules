@@ -1,0 +1,3 @@
+[submodule "vendor/php-ffmpeg-toolkit"]
+	path = vendor/php-ffmpeg-toolkit
+	url = https://github.com/Ziggeo/php-ffmpeg-toolkit.git

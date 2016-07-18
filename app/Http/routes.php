@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	Route::get('help', ['as' => 'help', 'uses' => 'IndexController@getHelp']);
 	Route::group(['prefix' => 'video'], function() {
 		Route::get('/', ['as' => 'video_index', 'uses' => 'VideoController@getIndex']);
+		Route::get('/page/{page?}', [ 'as' => 'paged_index', 'uses' => 'VideoController@getIndex']);
 		Route::get('/upload', ['as' => 'video_upload', 'uses' => 'VideoController@getUploadVideo']);
 		Route::get('/submit', ['as' => 'video_submit', 'uses' => 'VideoController@getSubmitVideo']);
 		Route::post('/submit', [ 'uses' => 'VideoController@postSubmitVideo']);

@@ -14,6 +14,7 @@
             <div class="form-group">
                 <label class="checkbox-inline"><input class="formats" type="checkbox" name="formats[]" value="net_mp4" id="net_mp4" checked> In article</label>
                 <label class="checkbox-inline"><input class="formats" type="checkbox" name="formats[]" value="bg_mp4" id="bg_mp4" > Background</label>
+                <label class="checkbox-inline"><input class="formats" type="checkbox" name="formats[]" value="mad_mp4" id="mad_mp4" > Mobile Ad</label>
             </div>
             <!-- The global progress bar -->
             <progress id="progress" class="progress" value="0" max="100">

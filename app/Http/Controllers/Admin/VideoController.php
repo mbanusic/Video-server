@@ -11,9 +11,17 @@ class VideoController extends Controller {
 	/**
 	 * First page, list all videos, link to upload video
 	 */
-	public function getIndex() {
-		$videos = Video::all();
-		return view('admin.video.index', array('videos' => $videos));
+	public function getIndex(Request $r, $page = null) {
+		if ($page) {
+			$page = abs(intval($page)-1);
+			$skip = $page * 10;
+		}
+		else {
+			$skip = 0;
+		}
+		$videos = Video::orderBy('id', 'desc')->skip($skip)->take(10)->get();
+		$total_count = Video::count() / 10;
+		return view('admin.video.index', array('videos' => $videos, 'total' => ceil($total_count), 'page' => $page));
 	}
 
 	/**

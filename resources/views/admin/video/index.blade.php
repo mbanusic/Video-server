@@ -36,4 +36,27 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="{{ route('paged_index', ['page' => ($page-1<0)?'0':($page)]) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @for ($i = 1; $i <= $total; $i++)
+                    <li class="page-item {{ ($i-1==$page)?'active':'' }}"><a class="page-link" href="{{  route('paged_index', ['page' => $i]) }}">{{ $i }}</a></li>
+                @endfor
+                <li class="page-item">
+                    <a class="page-link" href="{{ route('paged_index', ['page' => ($page-1>$total)?$total:($page+2)]) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </div>
 @endsection
