@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/upload/{key}', ['uses' => 'VideoController@postUploadDB']);
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 	Route::get('/', ['as' => 'admin_home', 'uses' => 'IndexController@getIndex']);
 	Route::get('help', ['as' => 'help', 'uses' => 'IndexController@getHelp']);

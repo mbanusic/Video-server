@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Formats\X264Extended;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\Driver\FastStartDriver;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe;
 use FFMpeg\Format\Video\WebM;
@@ -139,7 +140,7 @@ class Video extends Model{
 		]);
 		$video = $ffmpeg->open( $this->original_file );
 		$video->filters()
-			->resize( new Dimension( 670, 402 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
+			->resize( new Dimension( 660, 400 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
 		$format = new X264Extended('libfdk_aac');
 		$format->setKiloBitrate( 700 )
 			->setAudioChannels( 1 )
@@ -151,16 +152,7 @@ class Video extends Model{
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-net.mp4',
 			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-net.mp4',
 		);
-
-		/*$format = new WebM();
-		$format->setAudioChannels( 1 )->setAudioKiloBitrate( 128 )->setKiloBitrate( 700 );
-		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-net.webm'  );
-		$formats['net_webm'] = array(
-			'name' => 'Net-mp4',
-			'path' => '/var/www/transcoded/' . $this->unique_id . '-net.webm',
-			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-net.webm',
-		);
-		$this->formats = $formats;*/
+		$this->formats = $formats;
 		$this->to_encode = false;
 		$this->save();
 	}
@@ -173,9 +165,9 @@ class Video extends Model{
 		]);
 		$video = $ffmpeg->open( $this->original_file );
 		$video->filters()
-		      ->resize( new Dimension( 300, 250 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
+		      ->resize( new Dimension( 320, 240 ), ResizeFilter::RESIZEMODE_SCALE_HEIGHT, true );
 		$format = new X264Extended('libfdk_aac');
-		$format->setKiloBitrate( 300 )
+		$format->setKiloBitrate( 700 )
 		       ->setAudioChannels( 1 )
 		       ->setAudioKiloBitrate( 128 );
 		$video->save( $format, '/var/www/transcoded/' . $this->unique_id . '-mad.mp4' );
@@ -193,5 +185,5 @@ class Video extends Model{
 
 	}
 
-	
+
 }

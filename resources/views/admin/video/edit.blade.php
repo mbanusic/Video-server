@@ -38,6 +38,14 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td>Poster</td>
+                    <td>http://video.adriaticmedia.hr/thumbnails/{{ $video['unique_id'] }}.jpg</td>
+                </tr>
+                <tr>
+                    <td>Original</td>
+                    <td>{{ str_replace( '/var/www/', 'http://video.adriaticmedia.hr/', $video['original_file'] )  }}</td>
+                </tr>
                 @if ($video['formats'] && is_array($video['formats']))
                 @foreach ($video['formats'] as $format)
                     <tr>

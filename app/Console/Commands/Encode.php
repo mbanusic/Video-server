@@ -31,8 +31,10 @@ class Encode extends Command
 		$videos = Video::where('to_encode', true)->get();
 	    /** @var Video $video */
 	    foreach ($videos as $video) {
+	    	$this->line($video->id);
 		    if (isset($video->formats['net_mp4']) && $video->formats['net_mp4']['name'] == 'net_mp4') {
-			    $video->transcodeNet();
+			    $this->line('net_encode');
+		    	$video->transcodeNet();
 		    }
 		    if (isset($video->formats['bg_mp4']) && $video->formats['bg_mp4']['name'] == 'bg_mp4') {
 			    $video->transcodeBackground();

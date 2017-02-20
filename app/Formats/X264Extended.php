@@ -7,6 +7,6 @@ use FFMpeg\Format\Video\X264;
 class X264Extended extends X264 {
 
 	public function getExtraParams() {
-		return array("-profile:v", "baseline", "-f", "mp4");
+		return array("-profile:v", "baseline", "-f", "mp4", "-pix_fmt", "yuv420p");
 	}
 }

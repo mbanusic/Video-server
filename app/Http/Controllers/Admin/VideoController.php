@@ -77,4 +77,8 @@ class VideoController extends Controller {
 		$video->save();
 		return redirect()->route('video_edit', ['id' => $video->id]);
 	}
+
+	public function postUploadDB(Request $r, $key) {
+
+	}
 }
