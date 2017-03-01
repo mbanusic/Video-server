@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::get('/submit', ['as' => 'video_submit', 'uses' => 'VideoController@getSubmitVideo']);
 		Route::post('/submit', [ 'uses' => 'VideoController@postSubmitVideo']);
 		Route::get('/edit/{id}', ['as' => 'video_edit', 'uses' => 'VideoController@getEditVideo']);
+		Route::get('/delete/{id}', ['as' => 'video_delete', 'uses' => 'VideoController@getDeleteVideo']);
 		Route::post('/upload', ['uses' => 'VideoController@postUploadVideo']);
 		Route::post('edit/{id}', ['uses' => 'VideoController@postEditVideo']);
 	});

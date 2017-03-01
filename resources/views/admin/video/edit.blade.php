@@ -58,6 +58,11 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <a href="{{ route('video_delete', ['id' => $video['id']]) }}" class="btn btn-danger">Obriši</a>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

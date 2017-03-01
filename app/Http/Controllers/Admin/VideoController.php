@@ -61,6 +61,13 @@ class VideoController extends Controller {
 		return response()->json(['id' => $video->id, 'url' => route( 'video_edit', ['id' => $video->id] )]);
 	}
 
+	public function getDeleteVideo($id) {
+		$video  = Video::find($id);
+		if ($video) {
+			$video->delete();
+		}
+	}
+
 	public function postEditVideo() {
 
 	}
