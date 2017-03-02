@@ -124,7 +124,7 @@ class Video extends Model{
 		$formats['bg_mp4'] = array(
 			'name' => 'BG-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-bg.mp4',
-			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-bg.mp4');
+			'url' =>  env('APP_URL') . '/videos/'.$this->unique_id.'-bg.mp4');
 		$this->formats = $formats;
 		$this->to_encode = false;
 		$this->save();
@@ -150,7 +150,7 @@ class Video extends Model{
 		$formats['net_mp4'] = array(
 			'name' => 'Net-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-net.mp4',
-			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-net.mp4',
+			'url' => env('APP_URL') . '/videos/'.$this->unique_id.'-net.mp4',
 		);
 		$this->formats = $formats;
 		$this->to_encode = false;
@@ -175,7 +175,7 @@ class Video extends Model{
 		$formats['mad_mp4'] = array(
 			'name' => 'MAD-mp4',
 			'path' => '/var/www/transcoded/' . $this->unique_id . '-mad.mp4',
-			'url' => 'http://video.adriaticmedia.hr/videos/'.$this->unique_id.'-mad.mp4');
+			'url' => env('APP_URL') . '/videos/'.$this->unique_id.'-mad.mp4');
 		$this->formats = $formats;
 		$this->to_encode = false;
 		$this->save();

@@ -26,7 +26,7 @@
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="{{ route('video_edit', ['id' => $video['id']]) }}">{{ $video['title'] }}</a></h4>
-                                    Embed link: http://video.adriaticmedia.hr/videos/{{ $video['unique_id'] }}
+                                    Embed link: {{ env('APP_URL') }}/videos/{{ $video['unique_id'] }}
                                 </div>
                             </div>
                         </td>

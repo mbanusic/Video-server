@@ -8,7 +8,7 @@
             </div>
             <div class="media-body">
                 <h4>{{ $video['title'] }}</h4>
-                Embed link: http://video.adriaticmedia.hr/videos/{{ $video['unique_id'] }}
+                Embed link: {{ env('APP_URL') }}/videos/{{ $video['unique_id'] }}
                 @if( $video['to_encode'] )
                     <span class="btn btn-warning">Processing</span>
                 @else
@@ -21,9 +21,8 @@
     @if( !$video['to_encode'] )
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
-            <video class="video-js vjs-default-skin" controls poster="http://video.adriaticmedia.hr/thumbnails/{{ $video['unique_id'] }}.jpg">
-                <source src="http://video.adriaticmedia.hr/videos/{{ $video['unique_id'] }}.webm" type="video/webm" />
-                <source src="http://video.adriaticmedia.hr/videos/{{ $video['unique_id'] }}.mp4" type="video/mp4" />
+            <video class="video-js vjs-default-skin" controls poster="{{ env('APP_URL') }}/thumbnails/{{ $video['unique_id'] }}.jpg">
+                <source src="{{ env('APP_URL') }}/videos/{{ $video['unique_id'] }}.mp4" type="video/mp4" />
             </video>
         </div>
     </div>
@@ -40,11 +39,11 @@
                 <tbody>
                 <tr>
                     <td>Poster</td>
-                    <td>http://video.adriaticmedia.hr/thumbnails/{{ $video['unique_id'] }}.jpg</td>
+                    <td>{{ env('APP_URL') }}/thumbnails/{{ $video['unique_id'] }}.jpg</td>
                 </tr>
                 <tr>
                     <td>Original</td>
-                    <td>{{ str_replace( '/var/www/', 'http://video.adriaticmedia.hr/', $video['original_file'] )  }}</td>
+                    <td>{{ str_replace( '/var/www', env('APP_URL'), $video['original_file'] )  }}</td>
                 </tr>
                 @if ($video['formats'] && is_array($video['formats']))
                 @foreach ($video['formats'] as $format)
